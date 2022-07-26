@@ -31,7 +31,7 @@ class Home extends StatelessWidget {
     //Appbar
     final nuBar = AppBar(
       toolbarHeight: height * 0.18,
-      backgroundColor: const Color.fromARGB(255, 177, 50, 209),
+      backgroundColor:const Color.fromARGB(255, 126, 47, 179),
       actions: [NuBar(height, width)],
     );
 
@@ -39,31 +39,260 @@ class Home extends StatelessWidget {
     return Scaffold(
         appBar: nuBar,
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(25),
+            SizedBox(
+              height: height * 0.04,
+            ),
+            Flexible(
               child: Row(
                 children: [
-                  Flexible(
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: SizedBox(
-                      width: width * 0.40,
+                      width: width * 0.3,
                       child: const Text(
                         'Conta',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                          fontSize: 25,
                         ),
                       ),
                     ),
                   ),
                   SizedBox(
-                    width: width * 0.60,
+                    width: width * 0.48,
                   ),
                   IconButton(
                       onPressed: () {}, icon: const Icon(Icons.arrow_forward))
                 ],
               ),
-            )
+            ),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                child: Text(
+                  '200.00',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  ),
+              )),
+            SizedBox(height: height * 0.03,),
+            
+            Align(
+              alignment: Alignment.centerLeft,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    //Área pix
+                    SizedBox(width: width * 0.045,),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: const Color.fromARGB(185, 231, 229, 229),
+                          radius: 30,
+                          child: IconButton(
+                            onPressed: (){}, 
+                            icon: const Icon(
+                              Icons.pix,
+                              color: Colors.black,
+                              ),
+                          ),
+                        ),
+                        const Text(
+                          'Área Pix',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                          ),
+                      ],
+                    ),
+                    //Pagar
+                    SizedBox(width: width * 0.02,),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: const Color.fromARGB(185, 231, 229, 229),
+                          radius: 30,
+                          child: IconButton(
+                            onPressed: (){}, 
+                            icon: const Icon(
+                              Icons.payment,
+                              color: Colors.black,
+                              ),
+                          ),
+                        ),
+                        const Text(
+                          'Pagar',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    //Transferir
+                    SizedBox(width: width * 0.02,),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: const Color.fromARGB(185, 231, 229, 229),
+                          radius: 30,
+                          child: IconButton(
+                            onPressed: (){}, 
+                            icon: const Icon(
+                              Icons.attach_money,
+                              color: Colors.black,
+                              ),
+                          ),
+                        ),
+                        const Text(
+                          'Transferir',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: width * 0.02,),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: const Color.fromARGB(185, 231, 229, 229),
+                          radius: 30,
+                          child: IconButton(
+                            onPressed: (){}, 
+                            icon: const Icon(
+                              Icons.money,
+                              color: Colors.black,
+                              ),
+                          ),
+                        ),
+                        const Text(
+                          'Depositar',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: width * 0.02,),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: const Color.fromARGB(185, 231, 229, 229),
+                          radius: 30,
+                          child: IconButton(
+                            onPressed: (){}, 
+                            icon: const Icon(
+                              Icons.phone,
+                              color: Colors.black,
+                              ),
+                          ),
+                        ),
+                        const Text(
+                          'Recarga',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: width * 0.02,),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: const Color.fromARGB(185, 231, 229, 229),
+                          radius: 30,
+                          child: IconButton(
+                            onPressed: (){}, 
+                            icon: const Icon(
+                              Icons.card_giftcard,
+                              color: Colors.black,
+                              ),
+                          ),
+                        ),
+                        const Text(
+                          'Cobrar',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: width * 0.02,),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: const Color.fromARGB(185, 231, 229, 229),
+                          radius: 30,
+                          child: IconButton(
+                            onPressed: (){}, 
+                            icon: const Icon(
+                              Icons.health_and_safety_rounded,
+                              color: Colors.black,
+                              ),
+                          ),
+                        ),
+                        const Text(
+                          'Doação',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: width * 0.01,),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: const Color.fromARGB(185, 231, 229, 229),
+                          radius: 30,
+                          child: IconButton(
+                            onPressed: (){}, 
+                            icon: const Icon(
+                              Icons.wifi,
+                              color: Colors.black,
+                              ),
+                          ),
+                        ),
+                        const Text(
+                          'Internacional',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: width * 0.01,),
+                    Column(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: const Color.fromARGB(185, 231, 229, 229),
+                          radius: 30,
+                          child: IconButton(
+                            onPressed: (){}, 
+                            icon: const Icon(
+                              Icons.waterfall_chart_outlined,
+                              color: Colors.black,
+                              ),
+                          ),
+                        ),
+                        const Text(
+                          'Investir',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ));
   }

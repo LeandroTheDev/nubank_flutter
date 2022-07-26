@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class NuBar extends StatelessWidget {
-  final height;
-  final width;
+  final double height;
+  final double width;
   const NuBar(this.height, this.width, {Key? key}) : super(key: key);
 
   @override
@@ -17,9 +17,12 @@ class NuBar extends StatelessWidget {
                 child: Container(
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Color.fromARGB(255, 108, 27, 122),
+                      color: Color.fromARGB(255, 160, 73, 218),
                     ),
-                    child: const Icon(Icons.person))),
+                    child: IconButton(
+                      onPressed: (){},
+                      icon: const Icon(Icons.person),
+                    ))),
             SizedBox(
               width: width * 0.52,
             ),
@@ -29,7 +32,7 @@ class NuBar extends StatelessWidget {
                 width: width * 0.1, 
                 child: IconButton(
                   onPressed: (){}, 
-                  icon: Icon(Icons.remove_red_eye)
+                  icon: const Icon(Icons.remove_red_eye)
                 )),
 
             //Abrir menu de perguntas
@@ -37,7 +40,7 @@ class NuBar extends StatelessWidget {
                 width: width * 0.1,
                 child: IconButton(
                   onPressed: () {},
-                  icon: Icon(Icons.question_mark),
+                  icon: const Icon(Icons.question_mark),
                 )),
 
             //Abrir menu de convite
@@ -45,7 +48,7 @@ class NuBar extends StatelessWidget {
                 width: width * 0.1,
                 child: IconButton(
                   onPressed: () {}, 
-                  icon: Icon(Icons.person_add)
+                  icon: const Icon(Icons.person_add)
                 )),
             SizedBox(
               width: width * 0.04,
