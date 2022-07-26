@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'appbar.dart';
 
+//Inicialização
 void main() {
   runApp(const NubankApp());
 }
 
+//Criação da inicizalização
 class NubankApp extends StatelessWidget {
   const NubankApp({Key? key}) : super(key: key);
 
@@ -15,6 +18,7 @@ class NubankApp extends StatelessWidget {
   }
 }
 
+//Corpo do Aplicativo
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -23,48 +27,17 @@ class Home extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height =
         MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
+
+    //Appbar
+    final nuBar = AppBar(
+      toolbarHeight: height * 0.18,
+      backgroundColor: const Color.fromARGB(255, 177, 50, 209),
+      actions: [NuBar(height, width)],
+    );
+
+    //Inicio do App
     return Scaffold(
-        appBar: AppBar(
-          toolbarHeight: height * 0.15,
-          backgroundColor: Colors.purple,
-          actions: [
-            Column(
-              children: [
-                Row(
-                  children: [
-                    SizedBox(
-                      height: height * 0.1,
-                      width: width * 0.12,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromARGB(255, 108, 27, 122),
-                          ),
-                        child: Icon(Icons.person_add))),
-                    SizedBox(
-                      width: width * 0.87,
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    SizedBox(
-                    width: width * 0.28,
-                    child: Text(
-                      'Olá Bobo',
-                      style: TextStyle(
-                        fontSize: width * 0.049,
-                      ),
-                      )),
-                    SizedBox(
-                      width: width * 0.7,
-                    ),
-                  ],
-                ),
-              ],
-            )
-          ],
-        ),
+        appBar: nuBar,
         body: Column(
           children: [
             Padding(
@@ -77,6 +50,7 @@ class Home extends StatelessWidget {
                       child: const Text(
                         'Conta',
                         style: TextStyle(
+                          fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
                       ),
@@ -85,7 +59,8 @@ class Home extends StatelessWidget {
                   SizedBox(
                     width: width * 0.60,
                   ),
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.arrow_forward))
+                  IconButton(
+                      onPressed: () {}, icon: const Icon(Icons.arrow_forward))
                 ],
               ),
             )
