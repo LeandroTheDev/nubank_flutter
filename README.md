@@ -1,2 +1,5 @@
-# Nubank_Flutter
-Trying to make the nubank app in flutter
+# nubank
+
+Nubank Project
+
+Making the Nubank APP using flutter
