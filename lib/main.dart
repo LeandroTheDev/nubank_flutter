@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '/body/sideIcons.dart';
 import '/body/appbar.dart';
+import '/body/cards.dart';
 
 //Inicialização
 void main() {
@@ -28,6 +29,7 @@ class Home extends StatelessWidget {
     double width = MediaQuery.of(context).size.width;
     double height =
         MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
+    double heightCard = 200;
 
     //Appbar
     final nuBar = AppBar(
@@ -69,7 +71,7 @@ class Home extends StatelessWidget {
                 ],
               ),
             ),
-
+        
             //Construindo o dinheiro da conta
             const Align(
                 alignment: Alignment.centerLeft,
@@ -83,21 +85,21 @@ class Home extends StatelessWidget {
                     ),
                   ),
                 )),
-
+        
             const SizedBox(
               height: 25,
             ),
-
+        
             //Chamando o sideicons
             Align(
               alignment: Alignment.centerLeft,
               child: SideIcons(width, height),
             ),
-
+        
             const SizedBox(
               height: 25,
             ),
-
+        
             //Meus Cartões
             Container(
               width: width * 0.9,
@@ -122,21 +124,8 @@ class Home extends StatelessWidget {
                     ],
                   )),
             ),
-            Card(
-              elevation: 1,
-              child: SizedBox(
-                  width: width,
-                  child: Column(
-                    children: [
-                      const Text('Cartão de Crédito'),
-                      const Text('Fatura Atual'),
-                      Text('50.00'),
-                      Text('Limite disponivel de 1000'),
-                      TextButton(
-                          onPressed: () {}, child: Text('Parcelar compras')),
-                    ],
-                  )),
-            ),
+        
+          Cards(width, heightCard),
           ],
         ));
   }
