@@ -9,7 +9,7 @@ class SideIcons extends StatelessWidget {
 
 
   @override
-  Widget build(BuildContext) {
+  Widget build(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
@@ -232,6 +232,9 @@ class SideIcons extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          SizedBox(
+            width: width * 0.045,
           ),
         ],
       ),
