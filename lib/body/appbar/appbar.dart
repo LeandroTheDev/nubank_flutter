@@ -12,7 +12,8 @@ class NuBar extends StatelessWidget {
       children: [
         Row(
           children: [
-            SizedBox( //Perfil
+            //Perfil
+            SizedBox( 
               height: height * 0.1,
               width: width * 0.12,
               child: Container(
