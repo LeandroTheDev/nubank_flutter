@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
 import 'perfil.dart';
+import '../../main.dart';
 
-class NuBar extends StatelessWidget {
+class NuBar extends StatefulWidget {
   final double height;
   final double width;
-  const NuBar(this.height, this.width, {Key? key}) : super(key: key);
+  NuBar(this.height, this.width, {Key? key}) : super(key: key);
+
+  @override
+  State<NuBar> createState() => NuBarState();
+}
+
+class NuBarState extends State<NuBar> {
+  static bool swap = false;
 
   @override
   Widget build(BuildContext context) {
+
     return Column(
       children: [
         Row(
           children: [
             //Perfil
             SizedBox( 
-              height: height * 0.1,
-              width: width * 0.12,
+              height: widget.height * 0.1,
+              width: widget.width * 0.12,
               child: Container(
                 decoration: const BoxDecoration(
                   shape: BoxShape.circle,
@@ -34,18 +43,36 @@ class NuBar extends StatelessWidget {
             ),
 
             SizedBox(
-              width: width * 0.52,
+              width: widget.width * 0.52,
             ),
+
 
             //Ativar e desativar visualização do dinheiro
             SizedBox(
-                width: width * 0.1,
-                child: IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.remove_red_eye))),
+                width: widget.width * 0.1,
+                child: swap ? IconButton(
+                    onPressed: () { 
+                      setState(() {
+                        swap = !swap;
+                        HomeState;
+                      });
+                    print(swap);
+                    },
+                    icon: const Icon(Icons.remove_red_eye))
+                    : IconButton(
+                    onPressed: () { 
+                      setState(() {
+                        swap = !swap;
+                        HomeState;
+                      });
+                    print(swap);
+                    },
+                    icon: const Icon(Icons.remove_red_eye_outlined)),
+                    ),
 
             //Abrir menu de perguntas
             SizedBox(
-                width: width * 0.1,
+                width: widget.width * 0.1,
                 child: IconButton(
                   onPressed: () {},
                   icon: const Icon(Icons.question_mark),
@@ -53,30 +80,30 @@ class NuBar extends StatelessWidget {
 
             //Abrir menu de convite
             SizedBox(
-                width: width * 0.1,
+                width: widget.width * 0.1,
                 child: IconButton(
                     onPressed: () {}, icon: const Icon(Icons.person_add))),
             SizedBox(
-              width: width * 0.04,
+              width: widget.width * 0.04,
             )
           ],
         ),
         SizedBox(
-          height: height * 0.02,
+          height: widget.height * 0.02,
         ),
         Row(
           children: [
             SizedBox(
-                width: width * 0.28,
+                width: widget.width * 0.28,
                 child: Text(
                   'Olá, Bobo',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: width * 0.049,
+                    fontSize: widget.width * 0.049,
                   ),
                 )),
             SizedBox(
-              width: width * 0.65,
+              width: widget.width * 0.65,
             ),
           ],
         ),

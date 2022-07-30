@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '/body/sideIcons.dart';
-import 'body/appbar/appbar.dart';
+import '/body/appbar/appbar.dart';
 import '/body/cards.dart';
 
 //Inicialização
@@ -14,22 +14,38 @@ class NubankApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Home(),
     );
   }
 }
 
 //Corpo do Aplicativo
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class Home extends StatefulWidget {
+  Home({Key? key}) : super(key: key);
 
   @override
+  State<Home> createState() => HomeState();
+}
+
+class HomeState extends State<Home> {
+  @override
   Widget build(BuildContext context) {
+    //Responsividade
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
+    double height =
+        MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
     double heightCard = 200;
 
+    //Numeros da Conta
+    double accountDosh = 200.0;
+    double creditCardFaure = 50.0;
+    double accountLoan = 10000.0;
+    String censored = '***';
+    String doshShow = '';
+    bool swap = false;
+
+    
     //Appbar
     final nuBar = SliverAppBar(
       toolbarHeight: height * 0.18,
@@ -40,100 +56,113 @@ class Home extends StatelessWidget {
     //Inicio do App
     return Scaffold(
         body: NestedScrollView(
-          headerSliverBuilder: ((context, innerBoxIsScrolled) => [
+      headerSliverBuilder: ((context, innerBoxIsScrolled) => [
             nuBar,
           ]),
-          
-          body: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const SizedBox(
+              height: 30,
+            ),
+
+            //Conta
+            Row(
               children: [
-                const SizedBox(
-                  height: 30,
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: SizedBox(
-                        width: width * 0.3,
-                        child: const Text(
-                          'Conta',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25,
-                          ),
-                        ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: SizedBox(
+                    width: width * 0.3,
+                    child: const Text(
+                      'Conta',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 25,
                       ),
                     ),
-                    SizedBox(
-                      width: width * 0.48,
-                    ),
-                    IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.arrow_forward))
-                  ],
+                  ),
                 ),
-        
-                //Construindo o dinheiro da conta
-                const Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                      child: Text(
-                        '200.00',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    )),
-        
-                const SizedBox(
-                  height: 25,
+                SizedBox(
+                  width: width * 0.48,
                 ),
-        
-                //Chamando o sideicons
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: SideIcons(width, height),
-                ),
-        
-                const SizedBox(
-                  height: 25,
-                ),
-        
-                //Meus Cartões
-                Container(
-                  width: width * 0.9,
-                  decoration: const BoxDecoration(
-                      color: Color.fromARGB(185, 231, 229, 229),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  child: TextButton(
-                      onPressed: () {},
-                      child: Row(
-                        children: const [
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            child: Icon(
-                              Icons.credit_score,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            'Meus Cartões',
-                            style: TextStyle(color: Colors.black),
-                          ),
-                        ],
-                      )),
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-        
-                Cards(width, heightCard),
+                IconButton(
+                    onPressed: () {
+                      print(NuBarState.swap);
+                    },
+                    icon: const Icon(Icons.arrow_forward))
               ],
             ),
-          ),
-        ));
+
+            //Construindo o dinheiro da conta
+            Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                  child: NuBarState.swap
+                      ? Text(
+                          '200.00',
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        )
+                      : Text(
+                          '***',
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                )),
+
+            const SizedBox(
+              height: 25,
+            ),
+
+            //Chamando o sideicons
+            Align(
+              alignment: Alignment.centerLeft,
+              child: SideIcons(width, height),
+            ),
+
+            const SizedBox(
+              height: 25,
+            ),
+
+            //Meus Cartões
+            Container(
+              width: width * 0.9,
+              decoration: const BoxDecoration(
+                  color: Color.fromARGB(185, 231, 229, 229),
+                  borderRadius: BorderRadius.all(Radius.circular(10))),
+              child: TextButton(
+                  onPressed: () {},
+                  child: Row(
+                    children: const [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Icon(
+                          Icons.credit_score,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Text(
+                        'Meus Cartões',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ],
+                  )),
+            ),
+            const SizedBox(
+              height: 40,
+            ),
+
+            Cards(width, heightCard),
+          ],
+        ),
+      ),
+    ));
   }
 }
