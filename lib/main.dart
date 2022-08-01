@@ -43,7 +43,12 @@ class HomeState extends State<Home> {
     double accountLoan = 10000.0;
     String censored = '***';
     String doshShow = '';
-    bool swap = false;
+
+    onChange(){
+      setState(() {
+      NuBarState.swap;
+      });
+    }
 
     
     //Appbar
@@ -88,9 +93,9 @@ class HomeState extends State<Home> {
                 ),
                 IconButton(
                     onPressed: () {
-                      print(NuBarState.swap);
+                      print(onChange());
                     },
-                    icon: const Icon(Icons.arrow_forward))
+                    icon: const Icon(Icons.refresh))
               ],
             ),
 

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'perfil.dart';
-import '../../main.dart';
+import 'package:nubank/body/appbar/addfriends.dart';
+import 'package:nubank/body/appbar/helpme.dart';
+import 'profile.dart';
+import 'helpme.dart';
 
 class NuBar extends StatefulWidget {
   final double height;
   final double width;
+
   NuBar(this.height, this.width, {Key? key}) : super(key: key);
 
   @override
@@ -16,13 +19,12 @@ class NuBarState extends State<NuBar> {
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: [
         Row(
           children: [
             //Perfil
-            SizedBox( 
+            SizedBox(
               height: widget.height * 0.1,
               width: widget.width * 0.12,
               child: Container(
@@ -35,7 +37,7 @@ class NuBarState extends State<NuBar> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const SecondRoute()));
+                            builder: (context) => const Profile()));
                   },
                   icon: const Icon(Icons.person),
                 ),
@@ -46,35 +48,36 @@ class NuBarState extends State<NuBar> {
               width: widget.width * 0.52,
             ),
 
-
             //Ativar e desativar visualização do dinheiro
             SizedBox(
-                width: widget.width * 0.1,
-                child: swap ? IconButton(
-                    onPressed: () { 
-                      setState(() {
-                        swap = !swap;
-                        HomeState;
-                      });
-                    print(swap);
-                    },
-                    icon: const Icon(Icons.remove_red_eye))
-                    : IconButton(
-                    onPressed: () { 
-                      setState(() {
-                        swap = !swap;
-                        HomeState;
-                      });
-                    print(swap);
-                    },
-                    icon: const Icon(Icons.remove_red_eye_outlined)),
-                    ),
+              width: widget.width * 0.1,
+              child: swap
+                  ? IconButton(
+                      onPressed: () {
+                        setState(() {
+                          swap = !swap;
+                        });
+                        print(swap);
+                      },
+                      icon: const Icon(Icons.remove_red_eye))
+                  : IconButton(
+                      onPressed: () {
+                        setState(() {
+                          swap = !swap;
+                        });
+                        print(swap);
+                      },
+                      icon: const Icon(Icons.remove_red_eye_outlined)),
+            ),
 
             //Abrir menu de perguntas
             SizedBox(
                 width: widget.width * 0.1,
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Helpme()));
+                  },
                   icon: const Icon(Icons.question_mark),
                 )),
 
@@ -82,7 +85,11 @@ class NuBarState extends State<NuBar> {
             SizedBox(
                 width: widget.width * 0.1,
                 child: IconButton(
-                    onPressed: () {}, icon: const Icon(Icons.person_add))),
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => AddFriends()));
+                    },
+                    icon: const Icon(Icons.person_add))),
             SizedBox(
               width: widget.width * 0.04,
             )
