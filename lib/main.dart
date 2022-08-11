@@ -22,7 +22,7 @@ class NubankApp extends StatelessWidget {
 
 //Corpo do Aplicativo
 class Home extends StatefulWidget {
-  Home({Key? key}) : super(key: key);
+  const Home({Key? key}) : super(key: key);
 
   @override
   State<Home> createState() => HomeState();
@@ -36,13 +36,6 @@ class HomeState extends State<Home> {
     double height =
         MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
     double heightCard = 200;
-
-    //Numeros da Conta
-    double accountDosh = 200.0;
-    double creditCardFaure = 50.0;
-    double accountLoan = 10000.0;
-    String censored = '***';
-    String doshShow = '';
 
     onChange(){
       setState(() {
