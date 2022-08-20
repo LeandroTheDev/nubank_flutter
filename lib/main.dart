@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '/body/sideIcons.dart';
-import '/body/appbar/appbar.dart';
-import '/body/cards.dart';
+import 'body/screens/homepage/sideicons.dart';
+import 'body/screens/appbar/appbar.dart';
+import 'body/screens/homepage/cards.dart';
 
 //Inicialização
 void main() {
