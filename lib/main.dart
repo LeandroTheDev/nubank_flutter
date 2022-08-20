@@ -15,6 +15,9 @@ class NubankApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+      ),
       home: Home(),
     );
   }
@@ -31,19 +34,20 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+
     //Responsividade
     double width = MediaQuery.of(context).size.width;
     double height =
         MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
     double heightCard = 200;
 
+    //Atualização
     onChange(){
       setState(() {
       NuBarState.swap;
       });
     }
 
-    
     //Appbar
     final nuBar = SliverAppBar(
       toolbarHeight: height * 0.18,

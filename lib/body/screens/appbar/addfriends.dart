@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 //Criação das categorias
 class Category {
-
   final String id;
   final String title;
   final Color color;
@@ -36,8 +35,37 @@ const templateCategories = [
     title: 'Amigo 4',
     color: Colors.purple,
   ),
+  Category(
+    id: 'a5',
+    title: 'Amigo 5',
+    color: Colors.purple,
+  ),
+  Category(
+    id: 'a6',
+    title: 'Amigo 6',
+    color: Colors.purple,
+  ),
+  Category(
+    id: 'a7',
+    title: 'Amigo 7',
+    color: Colors.purple,
+  ),
+  Category(
+    id: 'a8',
+    title: 'Amigo 8',
+    color: Colors.purple,
+  ),
+  Category(
+    id: 'a9',
+    title: 'Amigo 9',
+    color: Colors.purple,
+  ),
+  Category(
+    id: 'a10',
+    title: 'Amigo 10',
+    color: Colors.purple,
+  ),
 ];
-
 
 //Corpo do AddFriends
 class AddFriends extends StatelessWidget {
@@ -71,13 +99,13 @@ class AddFriends extends StatelessWidget {
           //Lista de amigos
           SizedBox(
             height: height * 0.88,
-            width: width,
+            width: width * 0.9,
             child: GridView(
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 50,
-                childAspectRatio: 1/2,
-                crossAxisSpacing: 100,
-                mainAxisSpacing: 0,
+                maxCrossAxisExtent: 200,
+                childAspectRatio: 3 / 2,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
               ),
               children: templateCategories.map((cat) {
                 return CategoryItem(cat);
@@ -90,18 +118,58 @@ class AddFriends extends StatelessWidget {
   }
 }
 
-
 //Construção da tabela
 class CategoryItem extends StatelessWidget {
-
   final Category category;
 
   CategoryItem(this.category);
 
+  void _selectedCategory(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_){
+          return CategoriesFriendsScreen(category);
+        },
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () => _selectedCategory(context),
+      splashColor: Color.fromARGB(255, 221, 160, 230),
+      borderRadius: BorderRadius.circular(15),
+      child: Container(
+        padding: EdgeInsets.all(15),
+        child: Text(category.title),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          gradient: LinearGradient(
+            colors: [
+              category.color.withOpacity(0.5),
+              category.color,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomLeft,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+class CategoriesFriendsScreen extends StatelessWidget {
+
+  final Category category;
+
+  CategoriesFriendsScreen(this.category);
+
   @override
   Widget build(BuildContext context){
-    return Container(
-      child: Text(category.title),
+    return Scaffold(
     );
   }
 }
