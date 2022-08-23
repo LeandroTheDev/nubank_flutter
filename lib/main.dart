@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'body/screens/homepage/sideicons.dart';
 import 'body/screens/appbar/appbar.dart';
 import 'body/screens/homepage/cards.dart';
+import 'body/screens/appbar/addfriends.dart';
 
 //Inicialização
 void main() {
@@ -19,6 +20,11 @@ class NubankApp extends StatelessWidget {
         primarySwatch: Colors.purple,
       ),
       home: Home(),
+
+      //Criação de rotas para navegação
+      routes: {
+        '/categories-friends': (context) =>  CategoriesFriendsScreen(),
+      }
     );
   }
 }
