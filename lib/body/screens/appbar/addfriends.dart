@@ -18,52 +18,52 @@ const templateCategories = [
   Category(
     id: 'SC',
     title: 'Santa Catarina',
-    color: Colors.purple,
+    color: Color.fromARGB(255, 126, 47, 179),
   ),
   Category(
     id: 'RJ',
     title: 'Rio de Janeiro',
-    color: Colors.purple,
+    color: Color.fromARGB(255, 126, 47, 179),
   ),
   Category(
     id: 'SP',
     title: 'São Paulo',
-    color: Colors.purple,
+    color: Color.fromARGB(255, 126, 47, 179),
   ),
   Category(
     id: 'RS',
     title: 'Rio Grande do Sul',
-    color: Colors.purple,
+    color: Color.fromARGB(255, 126, 47, 179),
   ),
   Category(
     id: 'MG',
     title: 'Minas Gerais',
-    color: Colors.purple,
+    color: Color.fromARGB(255, 126, 47, 179),
   ),
   Category(
     id: 'AC',
     title: 'Acre',
-    color: Colors.purple,
+    color: Color.fromARGB(255, 126, 47, 179),
   ),
   Category(
     id: 'MT',
     title: 'Mato Grosso',
-    color: Colors.purple,
+    color: Color.fromARGB(255, 126, 47, 179),
   ),
   Category(
     id: 'MS',
     title: 'Mato Grosso Do Sul',
-    color: Colors.purple,
+    color: Color.fromARGB(255, 126, 47, 179),
   ),
   Category(
     id: 'ES',
     title: 'Espirito Santo',
-    color: Colors.purple,
+    color: Color.fromARGB(255, 126, 47, 179),
   ),
   Category(
     id: 'BA',
     title: 'Bahia',
-    color: Colors.purple,
+    color: Color.fromARGB(255, 126, 47, 179),
   ),
 ];
 
@@ -92,7 +92,8 @@ const templateFriends = [
     id: 'SC',
     name: 'BoboDev',
     age: 20,
-    description: 'O homem mais chad do mundo',
+    description:
+        'Simplesmente o BoboDev, o melhor e mais prepotente jogador de GangPlanks, o melhor programador de todos os tempos.',
     city: 'Joinvas',
     imageUrl:
         'https://scontent.fbnu5-1.fna.fbcdn.net/v/t39.30808-6/131515347_361757075484186_7279731453872224817_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=174925&_nc_eui2=AeF6wiwLznuNvxJSCdmojWvqKMBT8G0pyIQowFPwbSnIhB9aLaAeRP6VSZDN0MUwzox386_94rAQt6EgkFb4baYy&_nc_ohc=QI-7AagWg2wAX-HNTpl&_nc_zt=23&_nc_ht=scontent.fbnu5-1.fna&oh=00_AT_GUf3Qni8XGWXGcb2E707gCfMAgWhxymHbOJyDbl_QsA&oe=63092E62',
@@ -100,7 +101,7 @@ const templateFriends = [
   Friends(
     id: 'RS',
     name: 'YollaraDev',
-    age: 20,
+    age: 29,
     description: 'A mais linda de todas',
     city: 'Não lembro',
     imageUrl:
@@ -110,7 +111,8 @@ const templateFriends = [
     id: 'SC',
     name: 'Vinicim',
     age: 19,
-    description: 'O homem mais chad do mundo',
+    description:
+        'Oi sou o vinicius, sou indefeso, ruim no lolzinho, gosto do sexo masculino, mas prefiro não dizer sobre isso aos meus amigos, espero que me entenda e que possamos ser amigos. :)',
     city: 'Joinvas',
     imageUrl:
         'https://www.girodoboi.com.br/wp-content/uploads/2022/07/texas_longhorn_08.07.2022.jpg',
@@ -118,10 +120,20 @@ const templateFriends = [
   Friends(
     id: 'MG',
     name: 'Rochelem',
-    age: 20,
-    description: 'Trambiqueiro',
+    age: 21,
+    description: 'Corno',
     city: 'Cascaneias',
-    imageUrl: '',
+    imageUrl:
+        'https://static.wikia.nocookie.net/breakingbad/images/8/8e/BCS_S6_Portrait_Jimmy.jpg/revision/latest?cb=20220802210840',
+  ),
+  Friends(
+    id: 'MS',
+    name: 'Elem Lixeira',
+    age: 19,
+    description: 'Careca TV',
+    city: 'Nova Andradinas',
+    imageUrl:
+        'https://scontent.fbnu5-1.fna.fbcdn.net/v/t39.30808-6/294550531_3270835949908048_7825366661780299943_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFB7595nGzIaad1ouv1fJ31kys9YjJTYsWTKz1iMlNixSx2gadCILis-S1r1hfHnRTmg4s9Q9ec8U66wnu_vAcZ&_nc_ohc=u21MNSB6958AX9sepdE&_nc_zt=23&_nc_ht=scontent.fbnu5-1.fna&oh=00_AT9ng5dYk_9gMr48x0lUK1EKqeGG8TO5NkdFx8hK0KK3HQ&oe=630BEA84',
   ),
 ];
 
@@ -135,41 +147,44 @@ class AddFriends extends StatelessWidget {
         MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 223, 220, 220),
-      body: Column(
+      appBar: AppBar(
+        title: const Text("Amizades"),
+        backgroundColor: const Color.fromARGB(255, 126, 47, 179),
+      ),
+      body: Stack(
         children: [
-          //Espaçamento
-          SizedBox(
-            height: height * 0.04,
-          ),
-
-          //Icone do X para fechar
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.close)),
+          Container(
+            height: height,
+            width: width,
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage("assets/images/amigos.png")),
             ),
           ),
-
-          //Lista de amigos
-          SizedBox(
-            height: height * 0.88,
-            width: width * 0.9,
-            child: GridView(
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200,
-                childAspectRatio: 3 / 2,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
-              ),
-              children: templateCategories.map((cat) {
-                return CategoryItem(cat);
-              }).toList(),
+          Align(
+            alignment: Alignment.center,
+            child: Column(
+              children: [
+                //Lista de amigos
+                Container(
+                  padding: EdgeInsets.all(20),
+                  height: height * 0.915,
+                  width: width,
+                  child: GridView(
+                    gridDelegate:
+                        const SliverGridDelegateWithMaxCrossAxisExtent(
+                      maxCrossAxisExtent: 200,
+                      childAspectRatio: 3 / 2,
+                      crossAxisSpacing: 40,
+                      mainAxisSpacing: 40,
+                    ),
+                    children: templateCategories.map((cat) {
+                      return CategoryItem(cat);
+                    }).toList(),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -199,12 +214,17 @@ class CategoryItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(15),
       child: Container(
         padding: const EdgeInsets.all(15),
-        child: Text(category.title),
+        child: Align(
+            alignment: Alignment.center,
+            child: Text(
+              category.title,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            )),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(40),
           gradient: LinearGradient(
             colors: [
-              category.color.withOpacity(0.5),
+              Color.fromARGB(255, 191, 134, 229),
               category.color,
             ],
             begin: Alignment.topLeft,
@@ -231,6 +251,10 @@ class CategoriesFriendsScreen extends StatelessWidget {
 
     //Construção da lista de amigos do estado
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Amigos em ${category.id}"),
+        backgroundColor: const Color.fromARGB(255, 126, 47, 179),
+      ),
       body: ListView.builder(
         itemCount: friends.length,
         itemBuilder: (context, index) {
@@ -246,12 +270,17 @@ class Tabel extends StatelessWidget {
   final Friends friend;
   const Tabel(this.friend, {Key? key}) : super(key: key);
 
-  void _selectFriend() {}
+  void _selectedFriend(BuildContext context) {
+    Navigator.of(context).pushNamed(
+      '/details-friends',
+      arguments: friend,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: _selectFriend,
+      onTap: () => _selectedFriend(context),
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
@@ -287,15 +316,13 @@ class Tabel extends StatelessWidget {
                         fontSize: 26,
                         color: Colors.white,
                       ),
-                      softWrap: true,
-                      overflow: TextOverflow.fade,
                     ),
                   ),
                 ),
               ],
             ),
             Padding(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Row(children: [
                 Row(
                   children: [
@@ -306,7 +333,7 @@ class Tabel extends StatelessWidget {
                     const SizedBox(width: 6),
                     Text(
                       '${friend.age} Anos',
-                      style: TextStyle(fontSize: 15),
+                      style: const TextStyle(fontSize: 15),
                     ),
                     const SizedBox(
                       width: 140,
@@ -316,14 +343,137 @@ class Tabel extends StatelessWidget {
                       size: 30,
                     ),
                     const SizedBox(width: 6),
-                    Text(
-                      friend.city,
-                      style: TextStyle(fontSize: 15),
+                    SizedBox(
+                      width: 84,
+                      child: Text(
+                        friend.city,
+                        style: const TextStyle(
+                          fontSize: 15,
+                        ),
+                        overflow: TextOverflow.fade,
+                        softWrap: false,
+                      ),
                     ),
                   ],
                 )
               ]),
             )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//Criação dos detalhes amigos
+class DetailsFriendsScreen extends StatelessWidget {
+  const DetailsFriendsScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final friend = ModalRoute.of(context)?.settings.arguments as Friends;
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(friend.name),
+        backgroundColor: const Color.fromARGB(255, 126, 47, 179),
+      ),
+      body: Align(
+        alignment: Alignment.topCenter,
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            //Criação do circulo
+            Container(
+              height: 200,
+              width: 200,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.purple,
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: Image.network(
+                  friend.imageUrl,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+
+            const SizedBox(
+              height: 20,
+            ),
+
+            Container(
+              height: 300,
+              width: 400,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: const Color.fromARGB(255, 126, 47, 179),
+              ),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    children: [
+                      const SizedBox(width: 20),
+                      const Icon(
+                        Icons.person,
+                        size: 35,
+                        color: Colors.white,
+                      ),
+                      const SizedBox(width: 10),
+                      Text(
+                        friend.name,
+                        style: const TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const SizedBox(width: 25),
+                      Text(
+                        "Tem ${friend.age} anos de vida",
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  SizedBox(
+                      height: 150,
+                      width: 380,
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              friend.description,
+                              style: const TextStyle(
+                                  fontSize: 20, color: Colors.white),
+                            ),
+                          ),
+                        ],
+                      )),
+                  Container(
+                    height: 40,
+                    width: 250,
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 161, 89, 209),
+                      borderRadius: BorderRadius.circular(30) 
+                    ),
+                    child: TextButton(
+                      onPressed: () {},
+                      child: Text("Passar o Zap", style: TextStyle(color: Colors.white),),
+                    ),
+                  )
+                ],
+              ),
+            ),
           ],
         ),
       ),

@@ -24,6 +24,7 @@ class NubankApp extends StatelessWidget {
       //Criação de rotas para navegação
       routes: {
         '/categories-friends': (context) =>  CategoriesFriendsScreen(),
+        '/details-friends': (context) => DetailsFriendsScreen(),
       }
     );
   }
@@ -96,7 +97,7 @@ class HomeState extends State<Home> {
                 ),
                 IconButton(
                     onPressed: () {
-                      print(onChange());
+                      onChange();
                     },
                     icon: const Icon(Icons.refresh))
               ],
@@ -109,16 +110,16 @@ class HomeState extends State<Home> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   child: NuBarState.swap
-                      ? Text(
+                      ? const Text(
                           '200.00',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         )
-                      : Text(
+                      : const Text(
                           '***',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
