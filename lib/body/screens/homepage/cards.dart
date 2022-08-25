@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class Cards extends StatelessWidget {
   final double width;
   final double heightCard;
+  final Widget visibility;
+  final Widget visibilityCredit;
 
-  const Cards(this.width, this.heightCard, {Key? key}) : super(key: key);
+  const Cards(this.width, this.heightCard, this.visibility, this.visibilityCredit, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,25 +41,13 @@ class Cards extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.symmetric(vertical: 3),
-                      child: Text(
-                        '50.00',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      child: visibility,
                     ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.symmetric(vertical: 3),
-                      child: Text(
-                        'Limite disponivel de 1000',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Color.fromARGB(184, 107, 104, 104),
-                        ),
-                      ),
+                      child: visibilityCredit,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(

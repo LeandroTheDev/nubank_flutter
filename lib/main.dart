@@ -16,17 +16,16 @@ class NubankApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-      ),
-      home: Home(),
+        theme: ThemeData(
+          primarySwatch: Colors.purple,
+        ),
+        home: Home(),
 
-      //Criação de rotas para navegação
-      routes: {
-        '/categories-friends': (context) =>  CategoriesFriendsScreen(),
-        '/details-friends': (context) => DetailsFriendsScreen(),
-      }
-    );
+        //Criação de rotas para navegação
+        routes: {
+          '/categories-friends': (context) => CategoriesFriendsScreen(),
+          '/details-friends': (context) => DetailsFriendsScreen(),
+        });
   }
 }
 
@@ -39,9 +38,10 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
+  static bool swap = true;
+
   @override
   Widget build(BuildContext context) {
-
     //Responsividade
     double width = MediaQuery.of(context).size.width;
     double height =
@@ -49,17 +49,70 @@ class HomeState extends State<Home> {
     double heightCard = 200;
 
     //Atualização
-    onChange(){
+    onChange() {
       setState(() {
-      NuBarState.swap;
+        HomeState.swap;
       });
     }
 
+    Widget visibilityMoney = SizedBox(
+      width: 40,
+      child: HomeState.swap
+          ? IconButton(
+              onPressed: () {
+                setState(() {
+                  HomeState.swap = !HomeState.swap;
+                });
+              },
+              icon: const Icon(Icons.remove_red_eye_outlined))
+          : IconButton(
+              onPressed: () {
+                setState(() {
+                  HomeState.swap = !HomeState.swap;
+                });
+              },
+              icon: const Icon(Icons.remove_red_eye)),
+    );
+
+    Widget visibilityCredit = SizedBox(
+        child: HomeState.swap
+            ? const Text(
+                '50.00',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            : const Text(
+                '***',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ));
+
+    Widget visibilityCreditOpen = SizedBox(
+      child: HomeState.swap ? const Text(
+        'Limite disponivel de 1000',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Color.fromARGB(184, 107, 104, 104),
+        ),
+      )
+      : const Text(
+        'Limite disponivel de ***',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Color.fromARGB(184, 107, 104, 104),
+        ),
+      ),
+    );
+    
     //Appbar
     final nuBar = SliverAppBar(
       toolbarHeight: height * 0.18,
       backgroundColor: const Color.fromARGB(255, 126, 47, 179),
-      actions: [NuBar(height, width)],
+      actions: [NuBar(height, width, visibilityMoney)],
     );
 
     //Inicio do App
@@ -98,8 +151,9 @@ class HomeState extends State<Home> {
                 IconButton(
                     onPressed: () {
                       onChange();
+                      print(HomeState.swap);
                     },
-                    icon: const Icon(Icons.refresh))
+                    icon: const Icon(Icons.arrow_forward_ios))
               ],
             ),
 
@@ -109,7 +163,7 @@ class HomeState extends State<Home> {
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                  child: NuBarState.swap
+                  child: HomeState.swap
                       ? const Text(
                           '200.00',
                           style: TextStyle(
@@ -164,11 +218,12 @@ class HomeState extends State<Home> {
                     ],
                   )),
             ),
+
             const SizedBox(
               height: 40,
             ),
 
-            Cards(width, heightCard),
+            Cards(width, heightCard, visibilityCredit, visibilityCreditOpen),
           ],
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nubank/main.dart';
 import 'addfriends.dart';
 import 'helpme.dart';
 import 'profile.dart';
@@ -6,15 +7,15 @@ import 'profile.dart';
 class NuBar extends StatefulWidget {
   final double height;
   final double width;
+  final Widget visibility;
 
-  NuBar(this.height, this.width, {Key? key}) : super(key: key);
+  NuBar(this.height, this.width, this.visibility, {Key? key}) : super(key: key);
 
   @override
   State<NuBar> createState() => NuBarState();
 }
 
 class NuBarState extends State<NuBar> {
-  static bool swap = false;
 
   @override
   Widget build(BuildContext context) {
@@ -47,27 +48,9 @@ class NuBarState extends State<NuBar> {
               width: widget.width * 0.52,
             ),
 
-            //Ativar e desativar visualização do dinheiro
-            SizedBox(
-              width: widget.width * 0.1,
-              child: swap
-                  ? IconButton(
-                      onPressed: () {
-                        setState(() {
-                          swap = !swap;
-                        });
-                        print(swap);
-                      },
-                      icon: const Icon(Icons.remove_red_eye))
-                  : IconButton(
-                      onPressed: () {
-                        setState(() {
-                          swap = !swap;
-                        });
-                        print(swap);
-                      },
-                      icon: const Icon(Icons.remove_red_eye_outlined)),
-            ),
+            //Ativiar a visualização do dinheiro
+            widget.visibility,
+
 
             //Abrir menu de perguntas
             SizedBox(
@@ -85,8 +68,10 @@ class NuBarState extends State<NuBar> {
                 width: widget.width * 0.1,
                 child: IconButton(
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => AddFriends()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AppBarChanger()));
                     },
                     icon: const Icon(Icons.person_add))),
             SizedBox(

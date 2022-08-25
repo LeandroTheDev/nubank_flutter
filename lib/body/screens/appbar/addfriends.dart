@@ -137,20 +137,53 @@ const templateFriends = [
   ),
 ];
 
+class AppBarChanger extends StatelessWidget {
+  const AppBarChanger({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text("Amigos"),
+          backgroundColor: const Color.fromARGB(255, 126, 47, 179),
+          bottom: TabBar(
+            indicatorColor: Colors.purple,
+            tabs: const [
+              Tab(
+                icon: Icon(Icons.search),
+                text: "Adicionar",
+              ),
+              Tab(
+                icon: Icon(Icons.person),
+                text: "Amigos",
+              ),
+            ],
+          ),
+        ),
+        body: const TabBarView(
+          children: [
+            AddFriends(),
+            FriendsAdded(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 //Corpo do AddFriends
 class AddFriends extends StatelessWidget {
   const AddFriends({Key? key}) : super(key: key);
 
+  @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height =
         MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Amizades"),
-        backgroundColor: const Color.fromARGB(255, 126, 47, 179),
-      ),
       body: Stack(
         children: [
           Container(
@@ -168,8 +201,8 @@ class AddFriends extends StatelessWidget {
               children: [
                 //Lista de amigos
                 Container(
-                  padding: EdgeInsets.all(20),
-                  height: height * 0.915,
+                  padding: const EdgeInsets.only(top: 5, left: 20, right: 20),
+                  height: 529.425,
                   width: width,
                   child: GridView(
                     gridDelegate:
@@ -189,6 +222,18 @@ class AddFriends extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+//Corpo do FriendsAdded
+class FriendsAdded extends StatelessWidget {
+  const FriendsAdded({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text("Amigos Adicionados"),
     );
   }
 }
@@ -463,12 +508,14 @@ class DetailsFriendsScreen extends StatelessWidget {
                     height: 40,
                     width: 250,
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 161, 89, 209),
-                      borderRadius: BorderRadius.circular(30) 
-                    ),
+                        color: Color.fromARGB(255, 161, 89, 209),
+                        borderRadius: BorderRadius.circular(30)),
                     child: TextButton(
                       onPressed: () {},
-                      child: Text("Passar o Zap", style: TextStyle(color: Colors.white),),
+                      child: Text(
+                        "Passar o Zap",
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                   )
                 ],
