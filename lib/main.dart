@@ -17,7 +17,10 @@ class NubankApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         theme: ThemeData(
-          primarySwatch: Colors.purple,
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+            primary: const Color.fromARGB(255, 126, 47, 179),
+            secondary: const Color.fromARGB(255, 126, 47, 179),
+          ),
         ),
         home: Home(),
 
@@ -92,22 +95,23 @@ class HomeState extends State<Home> {
               ));
 
     Widget visibilityCreditOpen = SizedBox(
-      child: HomeState.swap ? const Text(
-        'Limite disponivel de 1000',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          color: Color.fromARGB(184, 107, 104, 104),
-        ),
-      )
-      : const Text(
-        'Limite disponivel de ***',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          color: Color.fromARGB(184, 107, 104, 104),
-        ),
-      ),
+      child: HomeState.swap
+          ? const Text(
+              'Limite disponivel de 1000',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(184, 107, 104, 104),
+              ),
+            )
+          : const Text(
+              'Limite disponivel de ***',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(184, 107, 104, 104),
+              ),
+            ),
     );
-    
+
     //Appbar
     final nuBar = SliverAppBar(
       toolbarHeight: height * 0.18,
@@ -125,9 +129,7 @@ class HomeState extends State<Home> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            const SizedBox(
-              height: 30,
-            ),
+            const SizedBox(height: 30),
 
             //Conta
             Row(
@@ -145,9 +147,7 @@ class HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: width * 0.48,
-                ),
+                SizedBox(width: width * 0.48),
                 IconButton(
                     onPressed: () {
                       onChange();
@@ -180,9 +180,7 @@ class HomeState extends State<Home> {
                         ),
                 )),
 
-            const SizedBox(
-              height: 25,
-            ),
+            const SizedBox(height: 25),
 
             //Chamando o sideicons
             Align(
@@ -190,9 +188,7 @@ class HomeState extends State<Home> {
               child: SideIcons(width, height),
             ),
 
-            const SizedBox(
-              height: 25,
-            ),
+            const SizedBox(height: 25),
 
             //Meus Cartões
             Container(
@@ -219,9 +215,7 @@ class HomeState extends State<Home> {
                   )),
             ),
 
-            const SizedBox(
-              height: 40,
-            ),
+            const SizedBox(height: 40),
 
             Cards(width, heightCard, visibilityCredit, visibilityCreditOpen),
           ],

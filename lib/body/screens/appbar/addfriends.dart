@@ -145,12 +145,24 @@ class AppBarChanger extends StatelessWidget {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
+        drawer: const FriendDrawner(),
         appBar: AppBar(
-          title: const Text("Amigos"),
+          title: Row(
+            children: [
+              const Text("Amigos"),
+
+              const SizedBox(width: 200),
+
+              IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.close),
+              )
+            ],
+          ),
           backgroundColor: const Color.fromARGB(255, 126, 47, 179),
-          bottom: TabBar(
+          bottom: const TabBar(
             indicatorColor: Colors.purple,
-            tabs: const [
+            tabs: [
               Tab(
                 icon: Icon(Icons.search),
                 text: "Adicionar",
@@ -521,6 +533,59 @@ class DetailsFriendsScreen extends StatelessWidget {
                 ],
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class FriendDrawner extends StatelessWidget {
+  const FriendDrawner({Key? key}) : super(key: key);
+
+  Widget listDrawers(IconData icon, String label) {
+    return ListTile(
+      minLeadingWidth: 0,
+      leading: Icon(
+        icon,
+        size: 25,
+      ),
+      title: Text(
+        label,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 14,
+        ),
+      ),
+      onTap: () {},
+    );
+  }
+
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 180,
+      child: Drawer(
+        child: Column(
+          children: [
+            Container(
+              height: 100,
+              width: double.infinity,
+              padding: const EdgeInsets.all(20),
+              color: Theme.of(context).colorScheme.primary,
+              alignment: Alignment.bottomCenter,
+              child: const Text(
+                "Seu Perfil",
+                style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+            ),
+            listDrawers(Icons.photo_outlined, "Adicionar Foto"),
+            listDrawers(Icons.content_paste_search_rounded, "Descrição"),
+            listDrawers(
+                Icons.playlist_add_check_circle_outlined, "Informações"),
+            listDrawers(Icons.help_outline, "Ajuda"),
           ],
         ),
       ),
