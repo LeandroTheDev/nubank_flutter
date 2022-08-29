@@ -68,10 +68,7 @@ class NuBarState extends State<NuBar> {
                 width: widget.width * 0.1,
                 child: IconButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => AppBarChanger()));
+                      Navigator.of(context).pushNamed('/friends-list');
                     },
                     icon: const Icon(Icons.person_add))),
             SizedBox(

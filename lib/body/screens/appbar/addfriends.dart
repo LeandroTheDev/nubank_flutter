@@ -89,15 +89,14 @@ class Friends {
 //Dados dos amigos
 const templateFriends = [
   Friends(
-    id: 'SC',
-    name: 'BoboDev',
-    age: 20,
-    description:
-        'Simplesmente o BoboDev, o melhor e mais prepotente jogador de GangPlanks, o melhor programador de todos os tempos.',
-    city: 'Joinvas',
-    imageUrl:
-        'https://scontent.fbnu5-1.fna.fbcdn.net/v/t39.30808-6/131515347_361757075484186_7279731453872224817_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=174925&_nc_eui2=AeF6wiwLznuNvxJSCdmojWvqKMBT8G0pyIQowFPwbSnIhB9aLaAeRP6VSZDN0MUwzox386_94rAQt6EgkFb4baYy&_nc_ohc=QI-7AagWg2wAX-HNTpl&_nc_zt=23&_nc_ht=scontent.fbnu5-1.fna&oh=00_AT_GUf3Qni8XGWXGcb2E707gCfMAgWhxymHbOJyDbl_QsA&oe=63092E62',
-  ),
+      id: 'SC',
+      name: 'BoboDev',
+      age: 20,
+      description:
+          'Simplesmente o BoboDev, o melhor e mais prepotente jogador de GangPlanks, o melhor programador de todos os tempos.',
+      city: 'Joinvas',
+      imageUrl:
+          'https://www.girodoboi.com.br/wp-content/uploads/2022/07/texas_longhorn_08.07.2022.jpg'),
   Friends(
     id: 'RS',
     name: 'YollaraDev',
@@ -105,7 +104,7 @@ const templateFriends = [
     description: 'A mais linda de todas',
     city: 'Não lembro',
     imageUrl:
-        'https://scontent.fbnu5-1.fna.fbcdn.net/v/t39.30808-6/275388413_507922184291127_7164133995144990640_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeGnSFiKyeruXgJ7ZTLUxje9BjIJb2FbELkGMglvYVsQua06PCg3sWP0IYtGlmEBy3jfZ3iJNJAAOuxaKBYVCapL&_nc_ohc=jtrrZECF4HYAX-YOZ6t&tn=eLbTe2I-Uef0dWo2&_nc_zt=23&_nc_ht=scontent.fbnu5-1.fna&oh=00_AT_KxKFvR3vvondN_jqVp87esKUgq_R1VwMHbP9AftBAUw&oe=630A0472',
+        'https://www.girodoboi.com.br/wp-content/uploads/2022/07/texas_longhorn_08.07.2022.jpg',
   ),
   Friends(
     id: 'SC',
@@ -133,12 +132,14 @@ const templateFriends = [
     description: 'Careca TV',
     city: 'Nova Andradinas',
     imageUrl:
-        'https://scontent.fbnu5-1.fna.fbcdn.net/v/t39.30808-6/294550531_3270835949908048_7825366661780299943_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFB7595nGzIaad1ouv1fJ31kys9YjJTYsWTKz1iMlNixSx2gadCILis-S1r1hfHnRTmg4s9Q9ec8U66wnu_vAcZ&_nc_ohc=u21MNSB6958AX9sepdE&_nc_zt=23&_nc_ht=scontent.fbnu5-1.fna&oh=00_AT9ng5dYk_9gMr48x0lUK1EKqeGG8TO5NkdFx8hK0KK3HQ&oe=630BEA84',
+        'https://www.girodoboi.com.br/wp-content/uploads/2022/07/texas_longhorn_08.07.2022.jpg',
   ),
 ];
 
 class AppBarChanger extends StatelessWidget {
-  const AppBarChanger({Key? key}) : super(key: key);
+  final List<Friends> addedFriends;
+
+  AppBarChanger(this.addedFriends);
 
   @override
   Widget build(BuildContext context) {
@@ -150,9 +151,7 @@ class AppBarChanger extends StatelessWidget {
           title: Row(
             children: [
               const Text("Amigos"),
-
               const SizedBox(width: 200),
-
               IconButton(
                 onPressed: () => Navigator.pop(context),
                 icon: const Icon(Icons.close),
@@ -174,10 +173,10 @@ class AppBarChanger extends StatelessWidget {
             ],
           ),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           children: [
             AddFriends(),
-            FriendsAdded(),
+            FriendsAdded(addedFriends),
           ],
         ),
       ),
@@ -240,13 +239,24 @@ class AddFriends extends StatelessWidget {
 
 //Corpo do FriendsAdded
 class FriendsAdded extends StatelessWidget {
-  const FriendsAdded({Key? key}) : super(key: key);
+  final List<Friends> addedFriends;
+
+  FriendsAdded(this.addedFriends, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("Amigos Adicionados"),
-    );
+    if (addedFriends.isEmpty) {
+      return const Center(
+        child: Text("Você não tem amigos!"),
+      );
+    } else {
+      return ListView.builder(
+        itemCount: addedFriends.length,
+        itemBuilder: (ctx, index) {
+          return Tabel(addedFriends[index]);
+        },
+      );
+    }
   }
 }
 
@@ -295,8 +305,6 @@ class CategoryItem extends StatelessWidget {
 
 //Dentro dos estados
 class CategoriesFriendsScreen extends StatelessWidget {
-  CategoriesFriendsScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final category = ModalRoute.of(context)?.settings.arguments as Category;
@@ -424,7 +432,10 @@ class Tabel extends StatelessWidget {
 
 //Criação dos detalhes amigos
 class DetailsFriendsScreen extends StatelessWidget {
-  const DetailsFriendsScreen({Key? key}) : super(key: key);
+  final Function(Friends) onToggleFriend;
+  final Function(Friends) isFriend;
+
+  DetailsFriendsScreen(this.onToggleFriend, this.isFriend);
 
   @override
   Widget build(BuildContext context) {
@@ -520,15 +531,27 @@ class DetailsFriendsScreen extends StatelessWidget {
                     height: 40,
                     width: 250,
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 161, 89, 209),
+                        color: const Color.fromARGB(255, 161, 89, 209),
                         borderRadius: BorderRadius.circular(30)),
-                    child: TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "Passar o Zap",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ),
+                    child: isFriend(friend)
+                        ? TextButton(
+                            onPressed: () {
+                              onToggleFriend(friend);
+                            },
+                            child: const Text(
+                              "Zap Passado",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          )
+                        : TextButton(
+                            onPressed: () {
+                              onToggleFriend(friend);
+                            },
+                            child: const Text(
+                              "Passar o Zap",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ),
                   )
                 ],
               ),
@@ -540,12 +563,12 @@ class DetailsFriendsScreen extends StatelessWidget {
   }
 }
 
+//Criação das listas do Drawer
 class FriendDrawner extends StatelessWidget {
   const FriendDrawner({Key? key}) : super(key: key);
 
-  Widget listDrawers(IconData icon, String label) {
+  Widget listDrawers(IconData icon, String label, Function() onTap) {
     return ListTile(
-      minLeadingWidth: 0,
       leading: Icon(
         icon,
         size: 25,
@@ -557,10 +580,11 @@ class FriendDrawner extends StatelessWidget {
           fontSize: 14,
         ),
       ),
-      onTap: () {},
+      onTap: onTap,
     );
   }
 
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 180,
@@ -581,13 +605,34 @@ class FriendDrawner extends StatelessWidget {
                     color: Colors.white),
               ),
             ),
-            listDrawers(Icons.photo_outlined, "Adicionar Foto"),
-            listDrawers(Icons.content_paste_search_rounded, "Descrição"),
+
+            //Lista que aparece ao clicar em Drawer
             listDrawers(
-                Icons.playlist_add_check_circle_outlined, "Informações"),
-            listDrawers(Icons.help_outline, "Ajuda"),
+                Icons.generating_tokens_outlined,
+                "Configurações",
+                () => Navigator.of(context)
+                    .pushReplacementNamed('/configurations-drawer')),
+            listDrawers(Icons.content_paste_search_rounded, "Descrição",
+                () => Navigator.pop(context)),
+            listDrawers(Icons.playlist_add_check_circle_outlined, "Informações",
+                () => Navigator.pop(context)),
+            listDrawers(
+                Icons.help_outline, "Ajuda", () => Navigator.pop(context)),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ConfigurationsDrawerScreen extends StatelessWidget {
+  const ConfigurationsDrawerScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Scaffold(
+      body: Center(
+        child: Text("Janela Nova"),
       ),
     );
   }

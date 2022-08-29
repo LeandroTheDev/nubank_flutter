@@ -6,15 +6,34 @@ import 'body/screens/appbar/addfriends.dart';
 
 //Inicialização
 void main() {
-  runApp(const NubankApp());
+  runApp(NubankApp());
 }
 
 //Criação da inicizalização
-class NubankApp extends StatelessWidget {
-  const NubankApp({Key? key}) : super(key: key);
+class NubankApp extends StatefulWidget {
+  NubankApp({Key? key}) : super(key: key);
+
+  @override
+  State<NubankApp> createState() => _NubankAppState();
+}
+
+class _NubankAppState extends State<NubankApp> {
+  List<Friends> addedFriends = [];
+
+  void _toggleFriend(Friends friend){
+
+    setState(() {
+      addedFriends.contains(friend) ? addedFriends.remove(friend) : addedFriends.add(friend);
+    });
+  }
+
+  bool _isFriend(Friends friend){
+    return addedFriends.contains(friend);
+  }
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
         theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch().copyWith(
@@ -26,8 +45,10 @@ class NubankApp extends StatelessWidget {
 
         //Criação de rotas para navegação
         routes: {
+          '/friends-list': (context) => AppBarChanger(addedFriends),
           '/categories-friends': (context) => CategoriesFriendsScreen(),
-          '/details-friends': (context) => DetailsFriendsScreen(),
+          '/details-friends': (context) => DetailsFriendsScreen(_toggleFriend, _isFriend),
+          '/configurations-drawer':(context) => const ConfigurationsDrawerScreen(),
         });
   }
 }
